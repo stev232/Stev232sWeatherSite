@@ -39,6 +39,7 @@ function current() {
     
         weatherEl[0][0].textContent = dayjs.unix(data.dt).format('M/D/YYYY');
         weatherEl[0][1].setAttribute('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png');
+        weatherEl[0][1].setAttribute('alt', data.weather[0].description);
         weatherEl[0][2].textContent = 'Temp: ' + data.main.temp + '\xB0F';
         weatherEl[0][3].textContent = 'wind: ' + data.wind.speed + ' MPH';
         weatherEl[0][4].textContent = 'Humidity: ' + data.main.humidity + '%';
@@ -54,10 +55,11 @@ function fiveDay() {
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
         for (var i = 1; i < 6; i++) {
+            console.log(data);
             weatherEl[i][0].textContent = dayjs(data.list[i*8-1].dt_txt).format('M/D/YYYY');
             weatherEl[i][1].setAttribute('src', 'http://openweathermap.org/img/w/' + data.list[i*8-1].weather[0].icon + '.png');
+            weatherEl[i][1].setAttribute('alt', data.list[i*8-1].weather[0].description);
             weatherEl[i][2].textContent = 'Temp: ' + data.list[i*8-1].main.temp + '\xB0F';
             weatherEl[i][3].textContent = 'wind: ' + data.list[i*8-1].wind.speed + ' MPH';
             weatherEl[i][4].textContent = 'Humidity: ' + data.list[i*8-1].main.humidity + '%';
@@ -65,26 +67,47 @@ function fiveDay() {
     });
 }
 
+function loadData() {
+    if(localStorage.getItem('city') != null) {
+        arrCity = localStorage.getItem('city');
+    }
+}
+
+function saveData() {
+    localStorage.setItem('city', arrCity);
+}
+
 searchBtn.addEventListener('click', function() {
     city = document.getElementById('cityInput').value;
+
+    for(var i = 0; i>arrCity.length; i++) {
+        if(city == arrCity[i][0]) {
+            state = arrCity[i][1];
+            lat = arrCity[i][2];
+            lon = arrCity[i][3];
+        }
+    }
     apiCall = apiSite[2] + 'q=' + city + apiKey;
     
     fetch(apiCall)
     .then(function (response) {
-        localStorage.setItem('city', response);
+        saveData();
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
         state = data[0].state;
         lat = data[0].lat;
         lon = data[0].lon;
 
-        for(var i = 0; i>arrCity.length; i++) {
-            if(arrCity[0][0] == city) {
-                arrCity;
-            } else {
-                arrCity += [[city, data[0].state, data[0].lat, data[0].lon]];
+        if(arrCity.length == 0) {
+            arrCity += [[city, data[0].state, data[0].lat, data[0].lon]];
+        } else {
+            for(var i = 0; i>arrCity.length; i++) {
+                if(arrCity[i][0] == city) {
+                    arrCity;
+                } else {
+                    arrCity += [[city, data[0].state, data[0].lat, data[0].lon]];
+                }
             }
         }
 
@@ -94,3 +117,5 @@ searchBtn.addEventListener('click', function() {
         fiveDay();
     });
 });
+
+loadData();
