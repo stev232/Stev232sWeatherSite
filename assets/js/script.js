@@ -9,7 +9,7 @@ const lon = -87.0646;
 
 var apiCall = '';
 
-apiCall = apiSite + apiLat + lat + apiLon + lon + apiKey;
+//apiCall = apiSite + apiLat + lat + apiLon + lon + apiKey;
 
 fetch(apiCall)
     .then(function (response) {
