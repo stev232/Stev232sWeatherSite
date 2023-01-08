@@ -8,71 +8,71 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/style.css" />
     </head>
-    <body class="p-0 m-0 bg-dark">
-        <header class="h-20 col-12 bg-primary d-flex  flex-row-reverse">
+
+    <body class="bg-dark m-2">
+        <header class="h-20 col-12 bg-primary d-flex flex-row-reverse">
             <p class="col-6 h-15 text-white fs-1"><strong>Weather Dashboard</strong></p>
         </header>
 
-        <main class="col-12 mt-2">
-            <section class="row m-0 p-0 mt-3">
-                <nav class="h-50 col-2 bg-light">
-                    <p class="fs-3"><strong>Search for a City:</strong></p>
-                    <input class="w-100" />    
-                    <button class="w-100 bg-info text-light id-searchBtn mt-2 mb-2">Search</button>
-                    <hr>
-                </nav>
-                <section class="h-50 col-10">
-                    <section class="h-50 col-10">
-                        <section class="border bg-light">
-                            <p class="fs-2"><strong><span id="city"></span> (<span id="date"></span>) <img id="weather"></img></strong></p>
-                            <p id="temp"></p>
-                            <p id="wind"></p>
-                            <p id="humid"></p>
-                        </section>
-                        <section class="border bg-light p-2 mt-3">
-                            <p class="fs-2"><strong>5-Day Forecast:</strong></p>
-                            <section class="row p-2 justify-content-around">
-                                <section class="col-2 bg-primary"  id="dayOne">
-                                    <p id="dateOne"></p>
-                                    <img id="weatherOne"></img>
-                                    <p id="tempOne"></p>
-                                    <p id="windOne"></p>
-                                    <p id="humidOne"></p>
-                                </section>
-                                <section class="col-2 bg-primary"  id="dayTwo">
-                                    <p id="dateTwo"></p>
-                                    <img id="weatherTwo"></img>
-                                    <p id="tempTwo"></p>
-                                    <p id="windTwo"></p>
-                                    <p id="humidTwo"></p>
-                                </section>
-                                <section class="col-2 bg-primary"  id="dayThree">
-                                    <p id="dateThree"></p>
-                                    <img id="weatherThree"></img>
-                                    <p id="tempThree"></p>
-                                    <p id="windThree"></p>
-                                    <p id="humidThree"></p>
-                                </section>
-                                <section class="col-2 bg-primary"  id="dayFour">
-                                    <p id="dateFour"></p>
-                                    <img id="weatherFour"></img>
-                                    <p id="tempFour"></p>
-                                    <p id="windFour"></p>
-                                    <p id="humidFour"></p>
-                                </section>
-                                <section class="col-2 bg-primary"  id="dayFive">
-                                    <p id="dateFive"></p>
-                                    <img id="weatherFive"></img>
-                                    <p id="tempFive"></p>
-                                    <p id="windFive"></p>
-                                    <p id="humidFive"></p>
-                                </section>
+        <main class="col-12 d-flex mt-3">
+            <nav class="h-50 col-3 bg-light p-2 border border-dark border-left-0 border-top-0 border-bottom-0">
+                <p class="fs-3"><strong>Search for a City:</strong></p>
+                <input class="w-100"></input>
+                <button class="w-100 bg-info text-light id-searchBtn mt-2 mb-2">Search</button>
+                <hr>
+            </nav>
+            <section class="h-50 col-9 d-flex flex-row-reverse">
+                <section class="h-50 col-12">
+                    <section class="border border-dark border-top-0 border-right-0 bg-light p-2">
+                        <p class="fs-2"><strong><span id="city"></span> (<span id="date"></span>) <img id="weather"></img></strong></p>
+                        <p id="temp"></p>
+                        <p id="wind"></p>
+                        <p id="humid"></p>
+                    </section>
+                    <section class="border border-dark border-right-0 border-bottom-0 bg-light p-2">
+                        <p class="fs-2"><strong>5-Day Forecast:</strong></p>
+                        <section class="row p-2 justify-content-around">
+                            <section class="col-2 bg-primary text-white"  id="dayOne">
+                                <p id="dateOne"></p>
+                                <img id="weatherOne"></img>
+                                <p id="tempOne"></p>
+                                <p id="windOne"></p>
+                                <p id="humidOne"></p>
+                            </section>
+                            <section class="col-2 bg-primary text-white"  id="dayTwo">
+                                <p id="dateTwo"></p>
+                                <img id="weatherTwo"></img>
+                                <p id="tempTwo"></p>
+                                <p id="windTwo"></p>
+                                <p id="humidTwo"></p>
+                            </section>
+                            <section class="col-2 bg-primary text-white"  id="dayThree">
+                                <p id="dateThree"></p>
+                                <img id="weatherThree"></img>
+                                <p id="tempThree"></p>
+                                <p id="windThree"></p>
+                                <p id="humidThree"></p>
+                            </section>
+                            <section class="col-2 bg-primary text-white"  id="dayFour">
+                                <p id="dateFour"></p>
+                                <img id="weatherFour"></img>
+                                <p id="tempFour"></p>
+                                <p id="windFour"></p>
+                                <p id="humidFour"></p>
+                            </section>
+                            <section class="col-2 bg-primary text-white"  id="dayFive">
+                                <p id="dateFive"></p>
+                                <img id="weatherFive"></img>
+                                <p id="tempFive"></p>
+                                <p id="windFive"></p>
+                                <p id="humidFive"></p>
                             </section>
                         </section>
                     </section>
                 </section>
             </section>
         </main>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
