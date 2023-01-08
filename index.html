@@ -9,18 +9,62 @@
         <link rel="stylesheet" href="./assets/style.css" />
     </head>
     <body class="p-0 m-0 bg-dark">
-        <header class="h-20 col-12">
-            <p class="col-8 h-15">Weather Dashboard</p>
+        <header class="h-20 col-12 bg-primary d-flex  flex-row-reverse">
+            <p class="col-6 h-15 text-white fs-1"><strong>Weather Dashboard</strong></p>
         </header>
 
-        <main class="col-12">
-            <section class="row">
-                <nav class="h-50 col-2">
-    
+        <main class="col-12 mt-2">
+            <section class="row m-0 p-0 mt-3">
+                <nav class="h-50 col-2 bg-light">
+                    <p class="fs-3"><strong>Search for a City:</strong></p>
+                    <input class="w-100" />    
+                    <button class="w-100 bg-info text-light id-searchBtn mt-2 mb-2">Search</button>
+                    <hr>
                 </nav>
                 <section class="h-50 col-10">
-                    <section class="h-50 col-10 border"
-    
+                    <section class="h-50 col-10">
+                        <section class="border bg-light">
+                            <p class="fs-3" id="city"> <span id="weather"></span></p>
+                            <p id="temp"></p>
+                            <p id="wind"></p>
+                            <p id="humid"></p>
+                        </section>
+                        <section class="border bg-light p-4 mt-3">
+                            <p class="fs-2"><strong>5-Day Forecast:</strong></p>
+                            <section class="row pt-2">
+                                <section class="col-2"  id="dayOne">
+                                    <p id="dateOne"></p>
+                                    <p id="weatherOne"></p>
+                                    <p id="tempOne"></p>
+                                    <p id="humidOne"></p>
+                                </section>
+                                <section class="col-2"  id="dayTwo">
+                                    <p id="dateTwo"></p>
+                                    <p id="weatherTwo"></p>
+                                    <p id="tempTwo"></p>
+                                    <p id="humidTwo"></p>
+                                </section>
+                                <section class="col-2"  id="dayThree">
+                                    <p id="dateThree"></p>
+                                    <p id="weatherThree"></p>
+                                    <p id="tempThree"></p>
+                                    <p id="humidThree"></p>
+                                </section>
+                                <section class="col-2"  id="dayFour">
+                                    <p id="dateFour"></p>
+                                    <p id="weatherFour"></p>
+                                    <p id="tempFour"></p>
+                                    <p id="humidFour"></p>
+                                </section>
+                                <section class="col-2"  id="dayFive">
+                                    <p id="dateFive"></p>
+                                    <p id="weatherFive"></p>
+                                    <p id="tempFive"></p>
+                                    <p id="humidFive"></p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
                 </section>
             </section>
         </main>
