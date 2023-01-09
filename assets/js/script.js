@@ -3,6 +3,7 @@ const apiSite = ['https://api.openweathermap.org/data/2.5/weather?units=imperial
 const apiLat = '&lat=';
 const apiLon = '&lon=';
 const apiKey = '&appid=4716e70fcaa2099125ebee1d3f5b0eac';
+const citySelector = document.getElementById('citySelector');
 const searchBtn = document.getElementById('searchBtn');
 const weatherEl = [[ document.getElementById('date'), document.getElementById('weather'), document.getElementById('temp'), 
             document.getElementById('wind'), document.getElementById('humid') ], 
@@ -74,6 +75,14 @@ function fiveDay() {
 function loadData() {
     if(localStorage.getItem('city') != null) {
         arrCity = localStorage.getItem('city');
+        arrCity = arrCity.split(',');
+        for(var i = 0; i < arrCity.length; i+=4) {
+            const button = document.createElement('button');
+            button.setAttribute('class', 'cityBtn w-100 bg-info text-light mt-2 mb-2 fs-6');
+            button.setAttribute('value', arrCity[i]);
+            citySelector.appendChild(button);
+            button.textContent = arrCity[i];
+        }
     }
 }
 
@@ -87,10 +96,10 @@ searchBtn.addEventListener('click', function() {
 
     if(arrCity != null) {
         for(var i = 0; i>arrCity.length; i++) {
-            if(city == arrCity[i][0]) {
-                state = arrCity[i][1];
-                lat = arrCity[i][2];
-                lon = arrCity[i][3];
+            if(city == arrCity[0]) {
+                state = arrCity[1];
+                lat = arrCity[2];
+                lon = arrCity[3];
             }
         }
     }
@@ -114,13 +123,13 @@ searchBtn.addEventListener('click', function() {
         saveData();
         current();
         fiveDay();
+        loadData();
     });
 });
 
 loadData();
 
 if(arrCity != null) {
-    arrCity = arrCity.split(',');
     city = arrCity[0];
     state = arrCity[1];
     lat = arrCity[2];
