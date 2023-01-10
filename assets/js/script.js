@@ -3,7 +3,6 @@ const apiSite = ['https://api.openweathermap.org/data/2.5/weather?units=imperial
 const apiLat = '&lat=';
 const apiLon = '&lon=';
 const apiKey = '&appid=4716e70fcaa2099125ebee1d3f5b0eac';
-const cityBtn = document.getElementsByClassName('cityBtn');
 const citySelector = document.getElementById('citySelector');
 const searchBtn = document.getElementById('searchBtn');
 const weatherEl = [[ document.getElementById('date'), document.getElementById('weather'), document.getElementById('temp'), 
@@ -147,27 +146,6 @@ searchBtn.addEventListener('click', function() {
 
 loadData();
 
-function btnClick(event) {
-    city = event.value;
-    apiCall = apiSite[2] + 'q=' + city + apiKey;
-    
-    fetch(apiCall)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        state = data[0].state;
-        lat = data[0].lat;
-        lon = data[0].lon;
-    });
-    
-    current();
-    fiveDay();
-}
-
-for(var i = 0; i < cityBtn.length; i++) {
-    cityBtn[i].addEventListener('click', btnClick(cityBtn[i].value));
-}
 
 if(arrCity != null) {
     city = arrCity[0];
@@ -186,3 +164,21 @@ if(arrCity != null) {
 
 current();
 fiveDay();
+
+var cityBtn = $('.cityBtn');
+    
+cityBtn.on('click', function(event) {
+    event.preventDefault();
+    city = event.target.value;
+    
+    for(var i = 0; i < arrCity.length; i+=4) {
+        if(arrCity[i] == city) {
+            state = arrCity[i+1];
+            lat = arrCity[i+2];
+            lon = arrCity[i+3];
+        }
+    }
+    
+    current();
+    fiveDay();
+});
