@@ -1,5 +1,5 @@
 // Declare constant variables
-const apiSite = ['https://api.openweathermap.org/data/2.5/weather?units=imperial', 'https://api.openweathermap.org/data/2.5/forecast?units=imperial', 'http://api.openweathermap.org/geo/1.0/direct?'];
+const apiSite = ['https://api.openweathermap.org/data/2.5/weather?units=imperial', 'https://api.openweathermap.org/data/2.5/forecast?units=imperial', 'https://api.openweathermap.org/geo/1.0/direct?'];
 const apiLat = '&lat=';
 const apiLon = '&lon=';
 const apiKey = '&appid=4716e70fcaa2099125ebee1d3f5b0eac';
@@ -26,6 +26,7 @@ var apiCall = '';
 var city;
 var state;
 var arrCity;
+var unique = true;
 
 function current() {
     apiCall = apiSite[0] + apiLat + lat + apiLon + lon + apiKey;
@@ -76,13 +77,6 @@ function loadData() {
     if(localStorage.getItem('city') != null) {
         arrCity = localStorage.getItem('city');
         arrCity = arrCity.split(',');
-        for(var i = 0; i < arrCity.length; i+=4) {
-            const button = document.createElement('button');
-            button.setAttribute('class', 'cityBtn w-100 bg-info text-light mt-2 mb-2 fs-6');
-            button.setAttribute('value', arrCity[i]);
-            citySelector.appendChild(button);
-            button.textContent = arrCity[i];
-        }
     }
 }
 
@@ -117,7 +111,26 @@ searchBtn.addEventListener('click', function() {
         if(arrCity==null) {
             arrCity = [city, data[0].state, data[0].lat, data[0].lon];
         } else {
-            arrCity = [city, data[0].state, data[0].lat, data[0].lon] + ',' + arrCity;
+            unique = true;
+            for(var i = 0; i < arrCity.length; i+=4) {
+                if(arrCity[i] == city) {
+                    unique = false;
+                } else {
+                    if(!unique) {
+                        unique = false;
+                    } else {
+                        unique = true;
+                    }
+                }
+            }
+            if(unique) {
+                arrCity += ',' + [city, data[0].state, data[0].lat, data[0].lon];
+                const button = document.createElement('button');
+                button.setAttribute('class', 'cityBtn w-100 bg-info text-light mt-2 mb-2 fs-6');
+                button.setAttribute('value', city);
+                citySelector.appendChild(button);
+                button.textContent = city;  
+            }
         }
         
         saveData();
@@ -134,6 +147,14 @@ if(arrCity != null) {
     state = arrCity[1];
     lat = arrCity[2];
     lon = arrCity[3];
+
+    for(var i = 0; i < arrCity.length; i+=4) {
+        const button = document.createElement('button');
+        button.setAttribute('class', 'cityBtn w-100 bg-info text-light mt-2 mb-2 fs-6');
+        button.setAttribute('value', arrCity[i]);
+        citySelector.appendChild(button);
+        button.textContent = arrCity[i];  
+    }
 }
 
 current();
